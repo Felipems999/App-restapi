@@ -13,6 +13,24 @@ public class Tarefa {
 	private Pessoa pessoaAlocada;
 	private boolean isFinalizada;
 
+	public Tarefa() {
+
+	}
+
+	public Tarefa(int id, String titulo, String descricao, Date prazo, String departamento, String duracao,
+			Pessoa pessoaAlocada, boolean isFinalizada) {
+
+		this.id = id;
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.prazo = prazo;
+		this.departamento = departamento;
+		this.duracao = duracao;
+		this.pessoaAlocada = pessoaAlocada;
+		this.isFinalizada = isFinalizada;
+
+	}
+
 	public int getId() {
 		return id;
 	}

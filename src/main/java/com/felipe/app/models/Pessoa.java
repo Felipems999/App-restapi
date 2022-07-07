@@ -8,6 +8,19 @@ public class Pessoa {
 	private String departamento;
 	private List<Tarefa> listaTarefas;
 
+	public Pessoa() {
+
+	}
+
+	public Pessoa(int id, String nome, String departamento, List<Tarefa> listaTarefas) {
+
+		this.id = id;
+		this.nome = nome;
+		this.departamento = departamento;
+		this.listaTarefas = listaTarefas;
+
+	}
+
 	public int getId() {
 		return id;
 	}
