@@ -35,7 +35,7 @@ public class PessoaRespository {
 
 	}
 
-	public void addPessoa(Pessoa pessoa) {
+	public void savePessoa(Pessoa pessoa) {
 
 		if (pessoas.contains(pessoa)) {
 			System.out.println("Pessoa com a mesma id");

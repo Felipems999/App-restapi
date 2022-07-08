@@ -16,6 +16,8 @@ public class PessoaController {
 	@Autowired
 	private PessoaRespository pessoaRepositry = new PessoaRespository();
 
+	// Metodos GET
+
 	@GetMapping("/get/pessoas")
 	public List<Pessoa> getPessoas() {
 		return pessoaRepositry.findAll();
@@ -25,5 +27,16 @@ public class PessoaController {
 	public Pessoa getPessoa(@PathVariable("id") int id) {
 		return pessoaRepositry.getById(id);
 	}
+
+	// Metodos POST
+
+	@GetMapping("/pessoas")
+	public void postPessoa(Pessoa pessoa) {
+		pessoaRepositry.savePessoa(pessoa);
+	}
+
+	// Metodos PUT
+
+	// Metodos DELETE
 
 }
