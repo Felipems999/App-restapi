@@ -48,10 +48,9 @@ public class PessoaController {
 
 	// Metodos PUT
 
-	@PutMapping("/put/{pessoa}")
-	public void putPessoa(@PathVariable("pessoa") Pessoa pessoa) {
-		pessoaRepository.deleteById(pessoa.getId());
-		pessoaRepository.save(pessoa);
+	@PutMapping("/put")
+	public Pessoa putPessoa(@RequestBody Pessoa pessoa) {
+		return pessoaRepository.save(pessoa);
 	}
 
 	// Metodos DELETE

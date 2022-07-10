@@ -48,9 +48,8 @@ public class TarefaController {
 
 	// Metodos PUT
 
-	@PutMapping("/put/{tarefa}")
-	public void putTarefa(@PathVariable("tarefa") Tarefa tarefa) {
-		tarefaRepository.deleteById(tarefa.getId());
+	@PutMapping("/put")
+	public void putTarefa(@RequestBody Tarefa tarefa) {
 		tarefaRepository.save(tarefa);
 	}
 
