@@ -1,42 +1,61 @@
 package com.felipe.app.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.felipe.app.models.Pessoa;
 import com.felipe.app.repository.PessoaRespository;
 
 @RestController
+@RequestMapping("/pessoas")
 public class PessoaController {
 
 	@Autowired
-	private PessoaRespository pessoaRepositry = new PessoaRespository();
+	private PessoaRespository pessoaRepository;
 
 	// Metodos GET
 
-	@GetMapping("/get/pessoas")
+	@GetMapping(value = "/get")
 	public List<Pessoa> getPessoas() {
-		return pessoaRepositry.findAll();
+		return pessoaRepository.findAll();
 	}
 
-	@GetMapping("/get/pessoas/{id}")
-	public Pessoa getPessoa(@PathVariable("id") int id) {
-		return pessoaRepositry.getById(id);
+	@GetMapping("/get/{id}")
+	public Optional<Pessoa> getPessoa(@PathVariable("id") Long id) {
+		return pessoaRepository.findById(id);
 	}
 
 	// Metodos POST
 
-	@GetMapping("/pessoas")
-	public void postPessoa(Pessoa pessoa) {
-		pessoaRepositry.savePessoa(pessoa);
+	@PostMapping("/post")
+	public void postPessoa(@RequestBody Pessoa pessoa) {
+		if (!(pessoaRepository.existsById(pessoa.getId())))
+			pessoaRepository.save(pessoa);
 	}
 
 	// Metodos PUT
 
+	@PutMapping("/put/{pessoa}")
+	public void putPessoa(@PathVariable("pessoa") Pessoa pessoa) {
+		pessoaRepository.deleteById(pessoa.getId());
+		pessoaRepository.save(pessoa);
+	}
+
 	// Metodos DELETE
+
+	@DeleteMapping("/delete/{id}")
+	public void deletePessoa(@PathVariable("id") Long id) {
+		pessoaRepository.deleteById(id);
+	}
 
 }

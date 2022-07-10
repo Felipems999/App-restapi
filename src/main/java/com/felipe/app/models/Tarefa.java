@@ -2,23 +2,31 @@ package com.felipe.app.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Tarefa {
 
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String titulo;
 	private String descricao;
 	private Date prazo;
 	private String departamento;
 	private String duracao;
-	private Pessoa pessoaAlocada;
+	private Long pessoaAlocada;
 	private boolean isFinalizada;
 
 	public Tarefa() {
 
 	}
 
-	public Tarefa(int id, String titulo, String descricao, Date prazo, String departamento, String duracao,
-			Pessoa pessoaAlocada, boolean isFinalizada) {
+	public Tarefa(Long id, String titulo, String descricao, Date prazo, String departamento, String duracao,
+			Long pessoaAlocada, boolean isFinalizada) {
 
 		this.id = id;
 		this.titulo = titulo;
@@ -31,11 +39,11 @@ public class Tarefa {
 
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -79,11 +87,11 @@ public class Tarefa {
 		this.duracao = duracao;
 	}
 
-	public Pessoa getPessoaAlocada() {
+	public Long getPessoaAlocada() {
 		return pessoaAlocada;
 	}
 
-	public void setPessoaAlocada(Pessoa pessoaAlocada) {
+	public void setPessoaAlocada(Long pessoaAlocada) {
 		this.pessoaAlocada = pessoaAlocada;
 	}
 
