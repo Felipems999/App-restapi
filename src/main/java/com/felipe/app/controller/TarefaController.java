@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -38,7 +40,7 @@ public class TarefaController {
 	// Metodos POST
 
 	@PostMapping("/post")
-	@ResponseStatus(value = HttpStatus.HTTP_VERSION_NOT_SUPPORTED)
+	@ResponseStatus(HttpStatus.CREATED)
 	public void postTarefa(@RequestBody Tarefa tarefa) {
 		if (!(tarefaRepository.existsById(tarefa.getId())))
 			tarefaRepository.save(tarefa);
@@ -46,6 +48,17 @@ public class TarefaController {
 
 	// Metodos PUT
 
+	@PutMapping("/put/{tarefa}")
+	public void putTarefa(@PathVariable("tarefa") Tarefa tarefa) {
+		tarefaRepository.deleteById(tarefa.getId());
+		tarefaRepository.save(tarefa);
+	}
+
 	// Metodos DELETE
+
+	@DeleteMapping("/delete/{id}")
+	public void deleteTarefa(@PathVariable("id") Long id) {
+		tarefaRepository.deleteById(id);
+	}
 
 }

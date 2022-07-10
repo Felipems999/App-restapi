@@ -21,6 +21,7 @@ public class Pessoa {
 	private Long id;
 	private String nome;
 	private String departamento;
+
 	@Autowired
 	@Transient
 	private TarefaRepository listaTarefas;
