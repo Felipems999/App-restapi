@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.felipe.app.models.Pessoa;
 import com.felipe.app.repository.PessoaRespository;
+import com.felipe.app.repository.TarefaRepository;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -24,6 +25,9 @@ public class PessoaController {
 
 	@Autowired
 	private PessoaRespository pessoaRepository;
+
+	@Autowired
+	private TarefaRepository tarefaRepository;
 
 	// Metodos GET
 

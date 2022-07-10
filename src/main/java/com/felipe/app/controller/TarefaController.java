@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.felipe.app.models.Pessoa;
 import com.felipe.app.models.Tarefa;
+import com.felipe.app.repository.PessoaRespository;
 import com.felipe.app.repository.TarefaRepository;
 
 @RestController
@@ -24,6 +26,9 @@ public class TarefaController {
 
 	@Autowired
 	private TarefaRepository tarefaRepository;
+
+	@Autowired
+	private PessoaRespository pessoaRespository;
 
 	// Metodos GET
 
@@ -51,6 +56,24 @@ public class TarefaController {
 	@PutMapping("/put")
 	public void putTarefa(@RequestBody Tarefa tarefa) {
 		tarefaRepository.save(tarefa);
+	}
+
+	@PutMapping("/put/alocar/{id}")
+	public void putTarefa(@PathVariable("id") Long id, @RequestBody Tarefa tarefa) {
+		Optional<Pessoa> pessoa = pessoaRespository.findById(id);
+
+		if (pessoa.get().getDepartamento().equals(tarefa.getDepartamento())) {
+			tarefa.setPessoaAlocada(id);
+			tarefaRepository.save(tarefa);
+		}
+	}
+
+	@PutMapping("/put/finalizar/{id}")
+	public void putFinalizarTarefa(@PathVariable("id") Long id, @RequestBody Tarefa tarefa) {
+		Optional<Tarefa> t = tarefaRepository.findById(id);
+		t.get().setIsFinalizada(true);
+
+		tarefaRepository.save(t.get());
 	}
 
 	// Metodos DELETE

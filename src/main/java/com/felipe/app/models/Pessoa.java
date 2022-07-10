@@ -30,14 +30,6 @@ public class Pessoa {
 
 	}
 
-	public Pessoa(Long id, String nome, String departamento) {
-
-		this.id = id;
-		this.nome = nome;
-		this.departamento = departamento;
-
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -55,7 +47,7 @@ public class Pessoa {
 	}
 
 	public String getDepartamento() {
-		return departamento;
+		return departamento.toLowerCase();
 	}
 
 	public void setDepartamento(String departamento) {
