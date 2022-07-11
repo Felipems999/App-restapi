@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.felipe.app.models.Pessoa;
 import com.felipe.app.models.Tarefa;
-import com.felipe.app.repository.PessoaRespository;
+import com.felipe.app.repository.PessoaRepository;
 import com.felipe.app.repository.TarefaRepository;
 
 @RestController
@@ -28,7 +28,7 @@ public class TarefaController {
 	private TarefaRepository tarefaRepository;
 
 	@Autowired
-	private PessoaRespository pessoaRespository;
+	private PessoaRepository pessoaRespository;
 
 	// Metodos GET
 
@@ -69,7 +69,7 @@ public class TarefaController {
 	}
 
 	@PutMapping("/put/finalizar/{id}")
-	public void putFinalizarTarefa(@PathVariable("id") Long id, @RequestBody Tarefa tarefa) {
+	public void putFinalizarTarefa(@PathVariable("id") Long id) {
 		Optional<Tarefa> t = tarefaRepository.findById(id);
 		t.get().setIsFinalizada(true);
 
