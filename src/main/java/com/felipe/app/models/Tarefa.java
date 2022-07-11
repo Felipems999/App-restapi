@@ -16,7 +16,7 @@ public class Tarefa {
 	private String titulo;
 	private String descricao;
 	private Date prazo;
-	private String departamento;
+	private Long departamento;
 	private String duracao;
 	private Long pessoaAlocada;
 	private boolean isFinalizada;
@@ -57,11 +57,11 @@ public class Tarefa {
 		this.prazo = prazo;
 	}
 
-	public String getDepartamento() {
-		return departamento.toLowerCase();
+	public Long getDepartamento() {
+		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(Long departamento) {
 		this.departamento = departamento;
 	}
 

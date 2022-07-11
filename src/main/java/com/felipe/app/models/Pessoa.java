@@ -20,7 +20,7 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String departamento;
+	private Long departamento;
 
 	@Autowired
 	@Transient
@@ -46,11 +46,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getDepartamento() {
-		return departamento.toLowerCase();
+	public Long getDepartamento() {
+		return departamento;
 	}
 
-	public void setDepartamento(String departamento) {
+	public void setDepartamento(Long departamento) {
 		this.departamento = departamento;
 	}
 
